@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 
 import { MOCK_DATA } from '../utils';
 
-import { CustomSlider, AssetsTable } from '../components';
+import { CustomSlider, AssetsTable, AssetGraph } from '../components';
 
 import { Button, IconButton } from '@mui/material';
 import { VisibilityOff, InfoOutlined, Add } from '@mui/icons-material';
@@ -13,11 +13,10 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container} style={{
-      width: '500px',
-      height: '700px',
+      width: '550px',
       justifyContent: 'space-between'
     }}>
-      <div>
+      <div className={styles.wrapper}>
         <div className={styles.row}>
           <span>
             <h1>Borrow</h1>
@@ -33,6 +32,7 @@ const Home: NextPage = () => {
             </IconButton>
           </span>
         </div>
+        <AssetGraph />
       </div>
 
       <div className={styles.container2}>

@@ -30,17 +30,29 @@ body {
   align-items: center;
   min-height: 100vh;
   justify-content: center;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 h1 {
   font-size: 20px;
 }
 
+h2 {
+  font-size: 22px;
+  font-family: "Prompt Regular";
+}
+
 h3 {
   font-family: 'DM Sans Regular';
   font-size: 15px;
+}
+
+h4 {
+  font-size: 15px;
+}
+
+h4 span {
+  opacity: .6;
 }
 
 a {

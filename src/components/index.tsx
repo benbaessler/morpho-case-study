@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css'
-import { MOCK_DATA, getLogoSvgUrl } from '../utils';
+import { MOCK_DATA, getLogoSvgUrl, allAssets } from '../utils';
 import { 
   Slider,
   styled,
@@ -11,8 +11,39 @@ import {
   TableCell,
   tableCellClasses
 } from '@mui/material'
+import { Doughnut } from 'react-chartjs-2'
+import { Chart, LinearScale, ArcElement } from 'chart.js'
+Chart.register(LinearScale, ArcElement)
 
+export const AssetGraph = () => {
+  const data = {
+    labels: MOCK_DATA.markets.map((asset: any) => asset.symbol),
+    datasets: [{
+      data: MOCK_DATA.markets.map((asset: any) => Number(asset.borrow)),
+      backgroundColor: MOCK_DATA.markets.map((asset: any) => allAssets[asset.symbol as keyof typeof allAssets].color),
+      borderWidth: 0,
+      cutout: '85%',
+      borderRadius: 20,
+      offset: 25
+    }]
+  };
 
+  const options = {
+    layout: {
+      padding: 12.5
+    }
+  }
+
+  return (
+    <div className={styles.graphWrapper}>
+      <Doughnut data={data} options={options}/>
+      <div className={styles.graphValue}>
+        <h2>${Number(MOCK_DATA.totalUSD)}</h2>
+        <h4><span>APY:</span> {Number(MOCK_DATA.globalAPY) * 100}%</h4>
+      </div>
+    </div>
+  )
+}
 
 export const CustomSlider = styled(Slider)(() => ({
   '& .MuiSlider-valueLabel': {
