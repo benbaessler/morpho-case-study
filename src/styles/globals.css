@@ -21,7 +21,7 @@
 }
 
 body {
-  background: gray; /* Change later */
+  background: #00011d; /* Change later */
   display: flex;
   align-items: center;
   min-height: 100vh;
