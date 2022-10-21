@@ -1,6 +1,7 @@
 .container {
+  padding: 20px 25px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   width: 500px;
   height: 700px;
   border-radius: 10px;
@@ -8,6 +9,23 @@
 }
 
 .title {
+  font-size: 20px;
+}
+
+.row {
   font-family: 'Prompt Regular';
-  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row span {
+  display: flex;
+  flex: 1 1 0%;
+}
+
+.button {
+  font-family: 'Prompt Regular' !important;
+  opacity: .5;
+  border-radius: 10px;
 }
