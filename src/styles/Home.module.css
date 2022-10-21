@@ -8,10 +8,6 @@
   background-color: #0c0f26;
 }
 
-.title {
-  font-size: 20px;
-}
-
 .row {
   font-family: 'Prompt Regular';
   display: flex;
@@ -29,3 +25,8 @@
   opacity: .5;
   border-radius: 10px;
 }
+
+.progressBar {
+  height: 5px;
+}
+
