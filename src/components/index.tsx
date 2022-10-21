@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css'
-import { MOCK_DATA } from '../utils';
+import { MOCK_DATA, getLogoSvgUrl } from '../utils';
 import { 
   Slider,
   styled,
@@ -56,10 +56,12 @@ export const AssetsTable = () => {
         >
           <StyledTableCell component="th" scope="row" >
             <div>
-              <div style={{ display: 'flex' }}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src={getLogoSvgUrl(asset.symbol)} className={styles.iconLarge}/>
                 {asset.symbol}
               </div>
               <div className={styles.valueContainer}>
+              <img src={getLogoSvgUrl(asset.symbol)} className={styles.iconLarge}/>
                 +{asset.morphoRewards}
               </div>
             </div>
