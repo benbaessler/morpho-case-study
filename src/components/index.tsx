@@ -11,7 +11,7 @@ import {
   TableCell,
   tableCellClasses
 } from '@mui/material'
-import { AddRoadTwoTone } from '@mui/icons-material';
+
 
 
 export const CustomSlider = styled(Slider)(() => ({
@@ -39,8 +39,8 @@ export const AssetsTable = () => {
     }
   }));
 
-  return <TableContainer>
-    <Table>
+  return <TableContainer style={{ borderRadius: '10px', maxHeight: '310px' }}>
+    <Table stickyHeader>
       <TableHead>
         <TableRow>
           <StyledTableCell>Assets</StyledTableCell>
@@ -61,14 +61,14 @@ export const AssetsTable = () => {
                 {asset.symbol}
               </div>
               <div className={styles.valueContainer}>
-              <img src={getLogoSvgUrl(asset.symbol)} className={styles.iconLarge}/>
+              <img src="/images/morpho-icon.png" className={styles.iconSmall}/>
                 +{asset.morphoRewards}
               </div>
             </div>
           </StyledTableCell>
           <StyledTableCell>{asset.borrow}</StyledTableCell>
-          <StyledTableCell>{asset.poolAPY}</StyledTableCell>
-          <StyledTableCell>{asset.userAPY}</StyledTableCell>
+          <StyledTableCell>{(Number(asset.poolAPY) * 100).toFixed(2)}%</StyledTableCell>
+          <StyledTableCell className={styles.blueText}>{(Number(asset.userAPY) * 100).toFixed(2)}%</StyledTableCell>
         </StyledTableRow>)}
       </TableBody>
     </Table>

@@ -7,6 +7,19 @@
   border: 1px solid rgba(256, 256, 256, .1);
 }
 
+.container2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableContainer {
+  border-radius: 10px;
+  background-color: #0c0f26;
+  border: 1px solid rgba(256, 256, 256, .1);
+}
+
+
+
 .row {
   font-family: 'Prompt Regular';
   display: flex;
@@ -25,6 +38,15 @@
   border-radius: 10px;
 }
 
+.button2 {
+  font-family: 'DM Sans Regular';
+  text-transform: none !important;
+  opacity: .5;
+  border-radius: 10px;
+  margin-top: 10px;
+  align-self: end;
+}
+
 .valueContainer {
   font-size: 11px;
   border: 1px solid rgba(256, 256, 256, .2);
@@ -32,6 +54,7 @@
   align-items: center;
   justify-content: center;
   min-width: 15px;
+  padding: 4px 2px;
   border-radius: 5px;
   margin-top: 5px;
 }
@@ -39,5 +62,21 @@
 .iconLarge {
   height: 20px;
   margin-right: 10px;
+}
+
+.iconSmall {
+  height: 13px;
+  margin-right: 5px;
+}
+
+.blueText {
+  color: #5B8CFF !important;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
 }
 

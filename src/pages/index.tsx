@@ -6,7 +6,7 @@ import { MOCK_DATA } from '../utils';
 import { CustomSlider, AssetsTable } from '../components';
 
 import { Button, IconButton } from '@mui/material';
-import { VisibilityOff, InfoOutlined } from '@mui/icons-material';
+import { VisibilityOff, InfoOutlined, Add } from '@mui/icons-material';
 
 const Home: NextPage = () => {
   const valueLabelFormat = (value: number) => `${value}%`
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      <div>
+      <div className={styles.container2}>
         <div className={styles.row} style={{ marginBottom: '10px' }}>
           <h3 style={{ marginRight: '10px' }}>Borrow Capacity</h3>
           <IconButton aria-label="help" className={styles.button} style={{ marginRight: '5px' }}>
@@ -51,12 +51,20 @@ const Home: NextPage = () => {
           />
         </div>
 
-        <div className={styles.container} style={{ 
+        <div className={styles.tableContainer} style={{ 
           minHeight: '200px',
           padding: 0
         }}>
           <AssetsTable/>
+          <div className={styles.center}>
+            {MOCK_DATA.markets.length === 0 ? <Button variant="text" endIcon={<Add/>} className={styles.button2}>
+              Borrow a new asset
+            </Button> : <></>}
+          </div>
         </div>
+        <Button variant="text" endIcon={<Add/>} className={styles.button2}>
+          Borrow a new asset
+        </Button>
       </div>
 
     </div>

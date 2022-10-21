@@ -20,6 +20,10 @@
   text-transform: capitalize !important;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: #00011d; /* Change later */
   display: flex;
