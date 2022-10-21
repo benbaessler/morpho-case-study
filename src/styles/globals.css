@@ -60,3 +60,8 @@ a {
 .MuiSlider-track {
   opacity: 0;
 }
+
+.MuiTableCell-root {
+  font-family: 'DM Sans Regular';
+  border: none;
+}

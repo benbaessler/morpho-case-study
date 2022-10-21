@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 
 import { MOCK_DATA } from '../utils';
 
-import { CustomSlider } from '../components';
+import { CustomSlider, AssetsTable } from '../components';
 
 import { Button, IconButton } from '@mui/material';
 import { VisibilityOff, InfoOutlined } from '@mui/icons-material';
@@ -51,8 +51,11 @@ const Home: NextPage = () => {
           />
         </div>
 
-        <div className={styles.container} style={{ minHeight: '200px' }}>
-          
+        <div className={styles.container} style={{ 
+          minHeight: '200px',
+          padding: 0
+        }}>
+          <AssetsTable/>
         </div>
       </div>
 
