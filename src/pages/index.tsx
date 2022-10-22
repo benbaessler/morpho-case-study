@@ -5,12 +5,13 @@ import { MOCK_DATA, allAssets } from '../constants'
 import { randomNrFromRange } from '../utils';
 import { CustomSlider, AssetsTable, AssetGraph } from '../components';
 import { Button, IconButton } from '@mui/material';
-import { VisibilityOff, InfoOutlined, Add, RemoveCircleOutline } from '@mui/icons-material';
+import { VisibilityOff, Visibility, InfoOutlined, Add, RemoveCircleOutline } from '@mui/icons-material';
 import { useState } from 'react';
 
 const Home: NextPage = () => {
   // React hook for dynamically updating the table
   const [markets, setMarkets] = useState<BorrowPosition[]>(MOCK_DATA.markets)
+  const [hideUSD, setHideUSD] = useState<boolean>(false)
 
   const valueLabelFormat = (value: number) => `${value}%`
 
@@ -52,7 +53,12 @@ const Home: NextPage = () => {
             <h1>Borrow</h1>
           </span>
           <span style={{ justifyContent: 'center' }}>
-            <Button variant="text" startIcon={<VisibilityOff/>} className={styles.button}>
+            <Button 
+              variant="text" 
+              startIcon={hideUSD ? <Visibility/> : <VisibilityOff/>} 
+              className={styles.button} 
+              onClick={() => setHideUSD(!hideUSD)}
+            >
               USD Value
             </Button>
           </span>
@@ -62,7 +68,13 @@ const Home: NextPage = () => {
             </IconButton>
           </span>
         </div>
-        <AssetGraph data={markets}/>
+        <div className={styles.graphWrapper}>
+          <AssetGraph data={markets}/>
+          <div className={styles.graphValue}>
+            <h2>{hideUSD ? "＊＊＊＊" : `${Number(MOCK_DATA.totalUSD)}`}</h2>
+            <h4><span>APY:</span> {Number(MOCK_DATA.globalAPY) * 100}%</h4>
+          </div>
+        </div>
       </div>
 
       <div className="container2">

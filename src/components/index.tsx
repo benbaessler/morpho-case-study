@@ -41,15 +41,7 @@ export const AssetGraph = ({ data }: Props) => {
     }
   }
 
-  return (
-    <div className={styles.graphWrapper}>
-      <Doughnut data={_data} options={options}/>
-      <div className={styles.graphValue}>
-        <h2>${Number(MOCK_DATA.totalUSD)}</h2>
-        <h4><span>APY:</span> {Number(MOCK_DATA.globalAPY) * 100}%</h4>
-      </div>
-    </div>
-  )
+  return <Doughnut data={_data} options={options}/>
 }
 
 export const CustomSlider = styled(Slider)(() => ({
