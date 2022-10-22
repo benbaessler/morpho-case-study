@@ -15,6 +15,11 @@ const Home: NextPage = () => {
   const [markets, setMarkets] = useState<BorrowPosition[]>(MOCK_DATA.markets)
   const [hideUSD, setHideUSD] = useState<boolean>(false)
 
+  const valueFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  })
+
   const valueLabelFormat = (value: number) => `${value}%`
 
   // Adds randomly generated borrow position to mock data
@@ -81,7 +86,7 @@ const Home: NextPage = () => {
         <div className={styles.graphWrapper}>
           <Graph data={markets}/>
           <div className={styles.graphValue}>
-            <h2>{hideUSD ? "＊＊＊＊" : `${Number(MOCK_DATA.totalUSD)}`}</h2>
+            <h2>{hideUSD ? "＊＊＊＊" : `${valueFormatter.format(Number(MOCK_DATA.totalUSD))}`}</h2>
             <h4><span>APY:</span> {Number(MOCK_DATA.globalAPY) * 100}%</h4>
           </div>
         </div>
