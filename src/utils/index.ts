@@ -144,3 +144,7 @@ export const getLogoSvgUrl = (symbol?: string) =>
     `/assets/logos/${symbol?.toLowerCase() || "unknown"}.svg`,
     CDN_BASE_URL
   ).toString();
+
+export const randomNrFromRange = (min: number, max: number): string => {
+  return (Math.random() * (max - min) + min).toFixed(2)
+}

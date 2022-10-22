@@ -1,15 +1,40 @@
 import type { NextPage } from 'next'
+import { BorrowPosition } from '../types'
 import styles from '../styles/Home.module.css'
-
-import { MOCK_DATA } from '../utils';
-
+import { MOCK_DATA, allAssets, randomNrFromRange } from '../utils';
 import { CustomSlider, AssetsTable, AssetGraph } from '../components';
-
 import { Button, IconButton } from '@mui/material';
-import { VisibilityOff, InfoOutlined, Add } from '@mui/icons-material';
+import { VisibilityOff, InfoOutlined, Add, TableView } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
+  // React hook for dynamically updating the table
+  const [markets, setMarkets] = useState<BorrowPosition[]>(MOCK_DATA.markets)
+
   const valueLabelFormat = (value: number) => `${value}%`
+
+  // Adds randomly generated borrow position to mock data
+  const addPosition = () => {
+    // Picking random asset
+    const assets = Object.keys(allAssets)
+    const symbol = assets[Math.floor(Math.random() * assets.length)] 
+
+    const obj: BorrowPosition = {
+      symbol: symbol,
+      borrow: randomNrFromRange(0, 150),
+      poolAPY: (Number(randomNrFromRange(0, 25)) / 100).toString(),
+      isMatched: true,
+      userAPY: (Number(randomNrFromRange(0, 25)) / 100).toString(),
+      morphoRewards: randomNrFromRange(0, 500),
+    }
+
+    let _markets = markets.slice(0)
+    _markets.push(obj)
+    setMarkets(_markets)
+
+    console.log(markets)
+  }
+
 
   return (
     <div className={styles.container} style={{
@@ -32,7 +57,7 @@ const Home: NextPage = () => {
             </IconButton>
           </span>
         </div>
-        <AssetGraph />
+        <AssetGraph data={markets}/>
       </div>
 
       <div className={styles.container2}>
@@ -50,19 +75,18 @@ const Home: NextPage = () => {
             valueLabelFormat={valueLabelFormat}
           />
         </div>
-
         <div className={styles.tableContainer} style={{ 
           minHeight: '200px',
           padding: 0
         }}>
-          <AssetsTable/>
+          <AssetsTable data={markets}/>
           <div className={styles.center}>
-            {MOCK_DATA.markets.length === 0 ? <Button variant="text" endIcon={<Add/>} className={styles.button2}>
+            {markets.length === 0 ? <Button variant="text" endIcon={<Add/>} className={styles.button2}>
               Borrow a new asset
             </Button> : <></>}
           </div>
         </div>
-        <Button variant="text" endIcon={<Add/>} className={styles.button2}>
+        <Button variant="text" endIcon={<Add/>} className={styles.button2} onClick={addPosition}>
           Borrow a new asset
         </Button>
       </div>

@@ -13,14 +13,19 @@ import {
 } from '@mui/material'
 import { Doughnut } from 'react-chartjs-2'
 import { Chart, LinearScale, ArcElement } from 'chart.js'
+import { BorrowPosition } from '../types';
 Chart.register(LinearScale, ArcElement)
 
-export const AssetGraph = () => {
-  const data = {
-    labels: MOCK_DATA.markets.map((asset: any) => asset.symbol),
+interface Props {
+  data: BorrowPosition[]
+}
+
+export const AssetGraph = ({ data }: Props) => {
+  const _data = {
+    labels: data.map((asset: any) => asset.symbol),
     datasets: [{
-      data: MOCK_DATA.markets.map((asset: any) => Number(asset.borrow)),
-      backgroundColor: MOCK_DATA.markets.map((asset: any) => allAssets[asset.symbol as keyof typeof allAssets].color),
+      data: data.map((asset: any) => Number(asset.borrow)),
+      backgroundColor: data.map((asset: any) => allAssets[asset.symbol as keyof typeof allAssets].color),
       borderWidth: 0,
       cutout: '85%',
       borderRadius: 20,
@@ -36,7 +41,7 @@ export const AssetGraph = () => {
 
   return (
     <div className={styles.graphWrapper}>
-      <Doughnut data={data} options={options}/>
+      <Doughnut data={_data} options={options}/>
       <div className={styles.graphValue}>
         <h2>${Number(MOCK_DATA.totalUSD)}</h2>
         <h4><span>APY:</span> {Number(MOCK_DATA.globalAPY) * 100}%</h4>
@@ -54,7 +59,7 @@ export const CustomSlider = styled(Slider)(() => ({
   }
 }))
 
-export const AssetsTable = () => {
+export const AssetsTable = ({ data }: Props) => {
   const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: '#14183c'
@@ -81,7 +86,7 @@ export const AssetsTable = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {MOCK_DATA.markets.map((asset: any, index: number) => <StyledTableRow 
+        {data.map((asset: BorrowPosition, index: number) => <StyledTableRow 
           key={asset.symbol}
           style={{ background: index % 2 ? '#14183c' : '#0c0f26' }}
         >
