@@ -1,5 +1,5 @@
 import styles from '../styles/Main.module.css'
-import { MOCK_DATA, allAssets } from '../constants'
+import { allAssets } from '../constants'
 import { getLogoSvgUrl } from '../utils';
 import { 
   Slider,

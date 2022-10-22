@@ -1,12 +1,23 @@
-import type { NextPage } from 'next'
-import { BorrowPosition } from '../types'
 import styles from '../styles/Main.module.css'
+import type { NextPage } from 'next'
+import { useEffect, useState } from 'react';
+import { BorrowPosition } from '../types'
 import { MOCK_DATA, allAssets } from '../constants'
 import { randomNrFromRange } from '../utils';
-import { CustomSlider, TableView, Graph, InfoTooltip } from '../components';
 import { Button, IconButton } from '@mui/material';
-import { VisibilityOff, Visibility, InfoOutlined, Add, RemoveCircleOutline } from '@mui/icons-material';
-import { useEffect, useState } from 'react';
+import { 
+  CustomSlider, 
+  TableView, 
+  Graph, 
+  InfoTooltip 
+} from '../components';
+import { 
+  VisibilityOff, 
+  Visibility, 
+  InfoOutlined, 
+  Add, 
+  RemoveCircleOutline 
+} from '@mui/icons-material';
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(true)
