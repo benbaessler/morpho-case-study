@@ -85,11 +85,6 @@ const Home: NextPage = () => {
           padding: 0
         }}>
           <AssetsTable data={markets}/>
-          <div className={styles.center}>
-            {markets.length === 0 ? <Button variant="text" endIcon={<Add/>} className={styles.button2}>
-              Borrow a new asset
-            </Button> : <></>}
-          </div>
         </div>
         <div className={styles.row} style={{ marginTop: '10px' }}>
           <IconButton aria-label="remove" className={styles.button2} onClick={removePosition} style={{

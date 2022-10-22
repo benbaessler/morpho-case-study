@@ -94,13 +94,15 @@ export const AssetsTable = ({ data }: Props) => {
         >
           <StyledTableCell component="th" scope="row" >
             <div>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
+              <div>
                 <img src={getLogoSvgUrl(asset.symbol)} className={styles.iconLarge}/>
                 {asset.symbol}
               </div>
               <div className={styles.valueContainer}>
-              <img src="/images/morpho-icon.png" className={styles.iconSmall}/>
-                +{asset.morphoRewards}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src="/images/morpho-icon.png" className={styles.iconSmall}/>
+                  +{asset.morphoRewards}
+                </div>
               </div>
             </div>
           </StyledTableCell>
