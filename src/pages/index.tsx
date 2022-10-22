@@ -1,11 +1,12 @@
 import type { NextPage } from 'next'
 import { BorrowPosition } from '../types'
-import styles from '../styles/Home.module.css'
-import { MOCK_DATA, allAssets, randomNrFromRange } from '../utils';
+import styles from '../styles/Main.module.css'
+import { MOCK_DATA, allAssets } from '../constants'
+import { randomNrFromRange } from '../utils';
 import { CustomSlider, AssetsTable, AssetGraph } from '../components';
 import { Button, IconButton } from '@mui/material';
-import { VisibilityOff, InfoOutlined, Add, TableView } from '@mui/icons-material';
-import { useEffect, useState } from 'react';
+import { VisibilityOff, InfoOutlined, Add } from '@mui/icons-material';
+import { useState } from 'react';
 
 const Home: NextPage = () => {
   // React hook for dynamically updating the table
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
     const assets = Object.keys(allAssets)
     const symbol = assets[Math.floor(Math.random() * assets.length)] 
 
+    // Generating random numbers for values
     const obj: BorrowPosition = {
       symbol: symbol,
       borrow: randomNrFromRange(0, 150),
@@ -28,19 +30,15 @@ const Home: NextPage = () => {
       morphoRewards: randomNrFromRange(0, 500),
     }
 
+    // Updating state
     let _markets = markets.slice(0)
     _markets.push(obj)
     setMarkets(_markets)
-
-    console.log(markets)
   }
 
 
   return (
-    <div className={styles.container} style={{
-      width: '550px',
-      justifyContent: 'space-between'
-    }}>
+    <div className={`container ${styles.main}`}>
       <div className={styles.wrapper}>
         <div className={styles.row}>
           <span>
@@ -60,7 +58,7 @@ const Home: NextPage = () => {
         <AssetGraph data={markets}/>
       </div>
 
-      <div className={styles.container2}>
+      <div className="container2">
         <div className={styles.row} style={{ marginBottom: '10px' }}>
           <h3 style={{ marginRight: '10px' }}>Borrow Capacity</h3>
           <IconButton aria-label="help" className={styles.button} style={{ marginRight: '5px' }}>

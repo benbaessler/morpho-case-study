@@ -1,5 +1,6 @@
-import styles from '../styles/Home.module.css'
-import { MOCK_DATA, getLogoSvgUrl, allAssets } from '../utils';
+import styles from '../styles/Main.module.css'
+import { MOCK_DATA, allAssets } from '../constants'
+import { getLogoSvgUrl } from '../utils';
 import { 
   Slider,
   styled,
@@ -21,6 +22,7 @@ interface Props {
 }
 
 export const AssetGraph = ({ data }: Props) => {
+  // Generating chart data from mock data
   const _data = {
     labels: data.map((asset: any) => asset.symbol),
     datasets: [{
