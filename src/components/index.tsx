@@ -10,7 +10,10 @@ import {
   TableRow,
   TableBody,
   TableCell,
-  tableCellClasses
+  tableCellClasses,
+  TooltipProps,
+  Tooltip,
+  tooltipClasses
 } from '@mui/material'
 import { Doughnut } from 'react-chartjs-2'
 import { Chart, LinearScale, ArcElement } from 'chart.js'
@@ -106,3 +109,21 @@ export const AssetsTable = ({ data }: Props) => {
     </Table>
   </TableContainer>
 }
+
+export const InfoTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: '#232559',
+    fontSize: 14,
+    fontFamily: 'DM Sans Regular',
+    padding: '10px 15px',
+    textTransform: 'none !important',
+    borderRadius: '10px'
+  },
+  [`& .${tooltipClasses.arrow}`]: {
+    "&::before": {
+      backgroundColor: '#232559',
+    }
+  }
+}));

@@ -3,8 +3,8 @@ import { BorrowPosition } from '../types'
 import styles from '../styles/Main.module.css'
 import { MOCK_DATA, allAssets } from '../constants'
 import { randomNrFromRange } from '../utils';
-import { CustomSlider, AssetsTable, AssetGraph } from '../components';
-import { Button, IconButton } from '@mui/material';
+import { CustomSlider, AssetsTable, AssetGraph, InfoTooltip } from '../components';
+import { Button, IconButton, Tooltip } from '@mui/material';
 import { VisibilityOff, Visibility, InfoOutlined, Add, RemoveCircleOutline } from '@mui/icons-material';
 import { useState } from 'react';
 
@@ -44,7 +44,6 @@ const Home: NextPage = () => {
     setMarkets(_markets)
   }
 
-
   return (
     <div className={`container ${styles.main}`}>
       <div className={styles.wrapper}>
@@ -63,9 +62,11 @@ const Home: NextPage = () => {
             </Button>
           </span>
           <span style={{ justifyContent: 'flex-end' }}>
-            <IconButton aria-label="help" className={styles.button}>
-              <InfoOutlined fontSize="small"/>
-            </IconButton>
+            <InfoTooltip arrow title="Details of your assets currently borrowed on Morpho-Compound.">
+              <IconButton aria-label="help" className={styles.button}>
+                <InfoOutlined fontSize="small"/>
+              </IconButton>
+            </InfoTooltip>
           </span>
         </div>
         <div className={styles.graphWrapper}>
@@ -80,9 +81,11 @@ const Home: NextPage = () => {
       <div className="container2">
         <div className={styles.row} style={{ marginBottom: '10px' }}>
           <h3 style={{ marginRight: '10px' }}>Borrow Capacity</h3>
-          <IconButton aria-label="help" className={styles.button} style={{ marginRight: '5px' }}>
-            <InfoOutlined fontSize="small"/>
-          </IconButton>
+          <InfoTooltip arrow title="Borrow capacity is the value (in $) that you can borrow against your collateral. Going higher than 80% of the total value of your collateral is risky and can lead to liquidation.">
+            <IconButton aria-label="help" className={styles.button} style={{ marginRight: '5px' }}>
+              <InfoOutlined fontSize="small"/>
+            </IconButton>
+          </InfoTooltip>
           <CustomSlider
             disabled
             track={false}
