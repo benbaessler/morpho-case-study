@@ -24,13 +24,13 @@ interface Props {
   data: BorrowPosition[]
 }
 
-export const AssetGraph = ({ data }: Props) => {
+export const Graph = ({ data }: Props) => {
   // Generating chart data from mock data
   const _data = {
-    labels: data.map((asset: any) => asset.symbol),
+    labels: data.map((asset: BorrowPosition) => asset.symbol),
     datasets: [{
-      data: data.map((asset: any) => Number(asset.borrow)),
-      backgroundColor: data.map((asset: any) => allAssets[asset.symbol as keyof typeof allAssets].color),
+      data: data.map((asset: BorrowPosition) => Number(asset.borrow)),
+      backgroundColor: data.map((asset: BorrowPosition) => allAssets[asset.symbol as keyof typeof allAssets].color),
       borderWidth: 0,
       cutout: '85%',
       borderRadius: 20,
@@ -38,13 +38,11 @@ export const AssetGraph = ({ data }: Props) => {
     }]
   };
 
-  const options = {
+  return <Doughnut data={_data} options={{
     layout: {
       padding: 12.5
     }
-  }
-
-  return <Doughnut data={_data} options={options}/>
+  }}/>
 }
 
 export const CustomSlider = styled(Slider)(() => ({
@@ -56,7 +54,7 @@ export const CustomSlider = styled(Slider)(() => ({
   }
 }))
 
-export const AssetsTable = ({ data }: Props) => {
+export const TableView = ({ data }: Props) => {
   const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: '#14183c',
@@ -74,7 +72,7 @@ export const AssetsTable = ({ data }: Props) => {
     }
   }));
 
-  return <TableContainer style={{ borderRadius: '10px', maxHeight: '310px' }}>
+  return <TableContainer className={styles.tableContainer}>
     <Table stickyHeader>
       <TableHead>
         <TableRow>
@@ -90,16 +88,14 @@ export const AssetsTable = ({ data }: Props) => {
           style={{ background: index % 2 ? '#14183c' : '#0c0f26' }}
         >
           <StyledTableCell component="th" scope="row" >
-            <div>
-              <div>
-                <img src={getLogoSvgUrl(asset.symbol)} className={styles.iconLarge}/>
-                {asset.symbol}
-              </div>
-              <div className={styles.valueContainer}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <img src="/images/morpho-icon.png" className={styles.iconSmall}/>
-                  +{asset.morphoRewards}
-                </div>
+            <div className={styles.assetContainer}>
+              <img src={getLogoSvgUrl(asset.symbol)} className={styles.iconLarge}/>
+              {asset.symbol}
+            </div>
+            <div className={styles.valueContainer}>
+              <div className={styles.assetContainer}>
+                <img src="/images/morpho-icon.png" className={styles.iconSmall}/>
+                +{asset.morphoRewards}
               </div>
             </div>
           </StyledTableCell>

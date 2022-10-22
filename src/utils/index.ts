@@ -1,5 +1,3 @@
-
-
 const CDN_BASE_URL = "https://cdn.morpho.xyz";
 export const getLogoSvgUrl = (symbol?: string) =>
   new URL(

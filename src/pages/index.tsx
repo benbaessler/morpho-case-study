@@ -3,19 +3,13 @@ import { BorrowPosition } from '../types'
 import styles from '../styles/Main.module.css'
 import { MOCK_DATA, allAssets } from '../constants'
 import { randomNrFromRange } from '../utils';
-import { CustomSlider, AssetsTable, AssetGraph, InfoTooltip } from '../components';
-import { Button, IconButton, Tooltip } from '@mui/material';
+import { CustomSlider, TableView, Graph, InfoTooltip } from '../components';
+import { Button, IconButton } from '@mui/material';
 import { VisibilityOff, Visibility, InfoOutlined, Add, RemoveCircleOutline } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(true)
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setLoading(false)
-    }
-  }, [])
 
   // React hook for dynamically updating the table
   const [markets, setMarkets] = useState<BorrowPosition[]>(MOCK_DATA.markets)
@@ -52,6 +46,12 @@ const Home: NextPage = () => {
     setMarkets(_markets)
   }
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setLoading(false)
+    }
+  }, [])
+
   return <div>{loading ? 
     <img className="loader" src='/images/morpho-logo.svg'/> : 
       <div className={`container ${styles.main}`}>
@@ -79,7 +79,7 @@ const Home: NextPage = () => {
           </span>
         </div>
         <div className={styles.graphWrapper}>
-          <AssetGraph data={markets}/>
+          <Graph data={markets}/>
           <div className={styles.graphValue}>
             <h2>{hideUSD ? "＊＊＊＊" : `${Number(MOCK_DATA.totalUSD)}`}</h2>
             <h4><span>APY:</span> {Number(MOCK_DATA.globalAPY) * 100}%</h4>
@@ -104,11 +104,8 @@ const Home: NextPage = () => {
             valueLabelFormat={valueLabelFormat}
           />
         </div>
-        <div className={styles.tableContainer} style={{ 
-          minHeight: '200px',
-          padding: 0
-        }}>
-          <AssetsTable data={markets}/>
+        <div className={styles.tableContainer}>
+          <TableView data={markets}/>
         </div>
         <div className={styles.row} style={{ marginTop: '10px' }}>
           <IconButton aria-label="remove" className={styles.button2} onClick={removePosition} style={{
