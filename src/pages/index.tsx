@@ -5,7 +5,7 @@ import { MOCK_DATA, allAssets } from '../constants'
 import { randomNrFromRange } from '../utils';
 import { CustomSlider, AssetsTable, AssetGraph } from '../components';
 import { Button, IconButton } from '@mui/material';
-import { VisibilityOff, InfoOutlined, Add } from '@mui/icons-material';
+import { VisibilityOff, InfoOutlined, Add, RemoveCircleOutline } from '@mui/icons-material';
 import { useState } from 'react';
 
 const Home: NextPage = () => {
@@ -33,6 +33,13 @@ const Home: NextPage = () => {
     // Updating state
     let _markets = markets.slice(0)
     _markets.push(obj)
+    setMarkets(_markets)
+  }
+
+  // Removes last added borrow position
+  const removePosition = () => {
+    let _markets = markets.slice(0)
+    _markets.pop()
     setMarkets(_markets)
   }
 
@@ -84,11 +91,15 @@ const Home: NextPage = () => {
             </Button> : <></>}
           </div>
         </div>
-        <Button variant="text" endIcon={<Add/>} className={styles.button2} onClick={addPosition}>
-          Borrow a new asset
-        </Button>
+        <div className={styles.row} style={{ marginTop: '10px' }}>
+          <IconButton aria-label="remove" className={styles.button2} onClick={removePosition} style={{
+            alignSelf: 'start'
+          }}><RemoveCircleOutline/></IconButton>
+          <Button variant="text" endIcon={<Add/>} className={styles.button2} onClick={addPosition}>
+            Borrow a new asset
+          </Button>
+        </div>
       </div>
-
     </div>
   )
 }

@@ -25,13 +25,13 @@
 }
 
 body {
-  
+
   background: #00011d; /* Change later */
   display: flex;
   align-items: center;
   min-height: 100vh;
   justify-content: center;
-  font-family: "DM Sans", sans-serif;
+  font-family: "DM Sans Regular", sans-serif !important;
 }
 
 h1 {
