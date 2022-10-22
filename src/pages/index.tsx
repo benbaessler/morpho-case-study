@@ -6,9 +6,17 @@ import { randomNrFromRange } from '../utils';
 import { CustomSlider, AssetsTable, AssetGraph, InfoTooltip } from '../components';
 import { Button, IconButton, Tooltip } from '@mui/material';
 import { VisibilityOff, Visibility, InfoOutlined, Add, RemoveCircleOutline } from '@mui/icons-material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
+  const [loading, setLoading] = useState<boolean>(true)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setLoading(false)
+    }
+  }, [])
+
   // React hook for dynamically updating the table
   const [markets, setMarkets] = useState<BorrowPosition[]>(MOCK_DATA.markets)
   const [hideUSD, setHideUSD] = useState<boolean>(false)
@@ -44,8 +52,9 @@ const Home: NextPage = () => {
     setMarkets(_markets)
   }
 
-  return (
-    <div className={`container ${styles.main}`}>
+  return <div>{loading ? 
+    <img className="loader" src='/images/morpho-logo.svg'/> : 
+      <div className={`container ${styles.main}`}>
       <div className={styles.wrapper}>
         <div className={styles.row}>
           <span>
@@ -110,8 +119,8 @@ const Home: NextPage = () => {
           </Button>
         </div>
       </div>
-    </div>
-  )
+    </div>}
+  </div>
 }
 
 export default Home

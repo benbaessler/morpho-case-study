@@ -60,7 +60,7 @@
 }
 
 .button2 {
-  font-family: 'DM Sans Regular';
+  font-family: 'DM Sans Regular' !important;
   text-transform: none !important;
   opacity: .5;
   border-radius: 10px;
@@ -77,7 +77,6 @@
   border-radius: 5px;
   margin-top: 5px;
 }
-
 
 .iconLarge {
   height: 20px;

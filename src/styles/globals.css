@@ -89,6 +89,17 @@ h4 span {
 }
 
 .MuiTableCell-root {
-  font-family: 'DM Sans Regular';
+  font-family: 'DM Sans Regular' !important;
   border: none;
+}
+
+
+@keyframes bounce {
+  from { transform: translate3d(0, 0, 0);}
+  to { transform: translate3d(0, -15px, 0);}
+}
+
+.loader {
+  width: 150px;
+  animation: bounce 0.5s alternate infinite;
 }

@@ -59,10 +59,12 @@ export const CustomSlider = styled(Slider)(() => ({
 export const AssetsTable = ({ data }: Props) => {
   const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: '#14183c'
+      backgroundColor: '#14183c',
+      border: 'none !important'
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: '16px',
+      border: 'none !important'
     }
   }))
 
