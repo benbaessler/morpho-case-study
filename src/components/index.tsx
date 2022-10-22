@@ -101,7 +101,12 @@ export const TableView = ({ data }: Props) => {
           </StyledTableCell>
           <StyledTableCell>{asset.borrow}</StyledTableCell>
           <StyledTableCell>{(Number(asset.poolAPY) * 100).toFixed(2)}%</StyledTableCell>
-          <StyledTableCell className={styles.blueText}>{(Number(asset.userAPY) * 100).toFixed(2)}%</StyledTableCell>
+          <StyledTableCell>
+            <div className={styles.p2pCell}>
+              {(Number(asset.userAPY) * 100).toFixed(2)}%
+              <img src="/images/p2p.svg"/>
+            </div>
+          </StyledTableCell>
         </StyledTableRow>)}
       </TableBody>
     </Table>

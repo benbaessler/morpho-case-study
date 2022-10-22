@@ -91,10 +91,6 @@
   margin-right: 5px;
 }
 
-.blueText {
-  color: #5B8CFF !important;
-}
-
 .center {
   display: flex;
   align-items: center;
@@ -106,4 +102,14 @@
 .assetContainer {
   display: flex;
   align-items: center;
+}
+
+.p2pCell {
+  color: #5B8CFF !important;
+  display: flex;
+  align-items: center;
+}
+
+.p2pCell img {
+  margin-left: 5px;
 }
