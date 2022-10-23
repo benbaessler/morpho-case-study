@@ -25,7 +25,7 @@ export const MOCK_DATA = {
 			borrow: "0.06",
 			poolAPY: "0.3205",
 			isMatched: true,
-			userAPY: "0.2737",
+			userAPY: "27.37",
 			morphoRewards: "0.12"
 		}
 	]
